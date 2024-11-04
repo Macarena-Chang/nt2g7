@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useAuthStore } from '../stores/authstore';
 import HomeView from '../views/HomeView.vue';
+import EventsView from '../views/EventsView.vue';
+import EventDetailView from '../views/EventDetailView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,6 +15,12 @@ const router = createRouter({
       path: '/home',
       name: 'home',
       component: HomeView,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/events',
+      name: 'events',
+      component: EventsView,
       meta: { requiresAuth: true }
     },
     {
@@ -34,6 +42,12 @@ const router = createRouter({
       path: '/unauthorized',
       name: 'unauthorized',
       component: () => import('../views/UnauthorizedView.vue')
+    },
+    {
+      path: '/events/:id',
+      name: 'eventDetail',
+      component: EventDetailView,
+      meta: { requiresAuth: true }
     }
   ]
 });

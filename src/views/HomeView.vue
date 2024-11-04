@@ -1,15 +1,31 @@
 <script setup>
+import { ref, onMounted } from 'vue';
 import { useAuthStore } from '@/stores/authstore';
 import { useRouter } from 'vue-router';
-import TheWelcome from '../components/TheWelcome.vue';
+import axios from 'axios';
 
 const authStore = useAuthStore();
 const router = useRouter();
+const events = ref([]);
 
-// Función para manejar el cierre de sesión
+const fetchEvents = async () => {
+  try {
+    const response = await axios.get('https://67201e1be7a5792f05308aee.mockapi.io/events/events');
+    events.value = response.data;
+  } catch (error) {
+    console.error('Error fetching events:', error);
+  }
+};
+
+onMounted(fetchEvents);
+
 const handleLogout = () => {
-  authStore.logout(); // Llama a la acción de logout
-  router.push('/login'); // Redirige a la página de login
+  authStore.logout();
+  router.push('/login');
+};
+
+const goToEventDetail = (id) => {
+  router.push(`/events/${id}`);
 };
 </script>
 
@@ -21,12 +37,22 @@ const handleLogout = () => {
       <h2>Bienvenido, {{ authStore.currentUser?.username }}!</h2>
     </div>
     <button @click="handleLogout" class="logout-button">Logout</button>
+
+    <!-- Cuadrícula de eventos -->
+    <div class="events-grid">
+      <div v-for="event in events" :key="event.id" class="event-card" @click="goToEventDetail(event.id)">
+        <img :src="event.imageUrl" alt="Event Image" class="event-image" />
+        <h3 class="event-title">{{ event.name }}</h3>
+        <p class="event-location">{{ event.location }}</p>
+        <p class="event-price">{{ event.price }} {{ event.currency }}</p>
+      </div>
+    </div>
   </main>
 </template>
 
 <style scoped>
 main {
-  position: relative; /* Para permitir posicionamiento absoluto de elementos hijos */
+  position: relative;
 }
 
 .user-info {
@@ -37,9 +63,9 @@ main {
 }
 
 .logout-button {
-  position: absolute; /* Para posicionar el botón en la esquina superior derecha */
-  top: 20px; /* Distancia del top */
-  right: 20px; /* Distancia de la derecha */
+  position: absolute;
+  top: 20px;
+  right: 20px;
   padding: 10px 20px;
   background-color: #ff5555;
   color: #fff;
@@ -50,5 +76,42 @@ main {
 
 .logout-button:hover {
   background-color: #ff3333;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 20px;
+}
+
+.event-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+}
+
+.event-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.event-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.event-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.event-location,
+.event-price {
+  font-size: 1rem;
+  color: #555;
 }
 </style>
