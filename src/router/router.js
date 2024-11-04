@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useAuthStore } from '../stores/authstore';
+import CartView from '../views/CartView.vue';
 import HomeView from '../views/HomeView.vue';
 import EventsView from '../views/EventsView.vue';
 import EventDetailView from '../views/EventDetailView.vue';
@@ -48,7 +49,13 @@ const router = createRouter({
       name: 'eventDetail',
       component: EventDetailView,
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: CartView
     }
+    
   ]
 });
 

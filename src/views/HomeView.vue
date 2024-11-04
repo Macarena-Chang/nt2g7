@@ -1,10 +1,12 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useAuthStore } from '@/stores/authstore';
+import { useAuthStore } from '../stores/authstore';
 import { useRouter } from 'vue-router';
+import { useCartStore } from '../stores/cartStore';
 import axios from 'axios';
 
 const authStore = useAuthStore();
+const cartStore = useCartStore(); // Instancia del store del carrito
 const router = useRouter();
 const events = ref([]);
 
@@ -27,6 +29,13 @@ const handleLogout = () => {
 const goToEventDetail = (id) => {
   router.push(`/events/${id}`);
 };
+
+const addToCart = (event) => {
+  cartStore.addToCart(event);  // Añadir el evento al carrito
+  alert(`${event.name} añadido al carrito.`);
+  router.push('/home');
+
+}
 </script>
 
 
@@ -45,8 +54,11 @@ const goToEventDetail = (id) => {
         <h3 class="event-title">{{ event.name }}</h3>
         <p class="event-location">{{ event.location }}</p>
         <p class="event-price">{{ event.price }} {{ event.currency }}</p>
+        <button @click="addToCart(event)">Añadir al carrito</button>
       </div>
     </div>
+    <button @click="router.push('/cart')">Ver Carrito</button>
+
   </main>
 </template>
 
