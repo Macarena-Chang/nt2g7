@@ -21,11 +21,6 @@ const fetchEvents = async () => {
 
 onMounted(fetchEvents);
 
-const handleLogout = () => {
-  authStore.logout();
-  router.push('/login');
-};
-
 const goToEventDetail = (id) => {
   router.push(`/events/${id}`);
 };
@@ -34,10 +29,8 @@ const addToCart = (event) => {
   cartStore.addToCart(event);  // Añadir el evento al carrito
   alert(`${event.name} añadido al carrito.`);
   router.push('/home');
-
 }
 </script>
-
 
 <template>
   <main>
@@ -45,7 +38,6 @@ const addToCart = (event) => {
     <div class="user-info">
       <h2>Bienvenido, {{ authStore.currentUser?.username }}!</h2>
     </div>
-    <button @click="handleLogout" class="logout-button">Logout</button>
 
     <!-- Cuadrícula de eventos -->
     <div class="events-grid">
@@ -58,7 +50,6 @@ const addToCart = (event) => {
       </div>
     </div>
     <button @click="router.push('/cart')">Ver Carrito</button>
-
   </main>
 </template>
 
@@ -72,22 +63,6 @@ main {
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
-}
-
-.logout-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 10px 20px;
-  background-color: #ff5555;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.logout-button:hover {
-  background-color: #ff3333;
 }
 
 .events-grid {

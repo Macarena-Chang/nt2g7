@@ -12,6 +12,20 @@ export const useAuthStore = defineStore('auth', {
   }),
 
   actions: {
+    // Inicializa el estado de autenticación desde localStorage
+    initializeAuth() {
+      const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+      const user = JSON.parse(localStorage.getItem('user'));
+      const isAdmin = localStorage.getItem('isAdmin') === 'true';
+
+      if (isAuthenticated && user) {
+        this.isAuthenticated = true;
+        this.user = user;
+        this.currentUser = user;
+        this.isAdmin = isAdmin;
+      }
+    },
+
     async getUserByUserName(username) {
       const response = await axios.get(this.mockApiAuth);
       const users = response.data;

@@ -55,19 +55,23 @@ const router = createRouter({
       name: 'cart',
       component: CartView
     }
-    
   ]
 });
 
 // Guard de navegación para proteger rutas
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore();
-  if (to.meta.requiresAuth && !authStore.currentUser) {
-    next('/login');
+  const isAuthenticated = authStore.isAuthenticated;
+
+  // Redirigir a /home si el usuario ya está autenticado y intenta acceder a /login
+  if (to.path === '/login' && isAuthenticated) {
+    next('/home'); // Redirigir a /home
+  } else if (to.meta.requiresAuth && !authStore.currentUser) {
+    next('/login'); // Redirigir a /login si no está autenticado
   } else if (to.meta.adminOnly && authStore.currentUser?.role !== 'admin') {
-    next('/unauthorized');
+    next('/unauthorized'); // Redirigir a la página no autorizada
   } else {
-    next();
+    next(); // Continuar a la ruta deseada
   }
 });
 
