@@ -4,6 +4,10 @@ import { useAuthStore } from '../stores/authstore';
 import { useRouter } from 'vue-router';
 import { useCartStore } from '../stores/cartStore';
 import axios from 'axios';
+import '@fortawesome/fontawesome-free/css/all.css';
+import '@fortawesome/fontawesome-free/js/all.js';
+
+
 
 const authStore = useAuthStore();
 const cartStore = useCartStore(); // Instancia del store del carrito

@@ -8,7 +8,7 @@
 <script setup>
 import { onMounted } from 'vue'; // Asegúrate de importar onMounted
 import { useAuthStore } from './stores/authstore'; // Asegúrate de que la ruta sea correcta
-import Header from './components/Header.vue';
+import Header from './components/HeaderComponent.vue';
 
 const authStore = useAuthStore();
 

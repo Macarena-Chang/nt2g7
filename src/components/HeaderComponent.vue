@@ -2,6 +2,8 @@
     <header class="header-logo">
       <span class="logo-title">TU-EVENTO</span>
       <button v-if="isAuthenticated" @click="handleLogout" class="logout-button">Logout</button>
+      
+      <button @click="goToCart()" id="cart-button"><i class="fa-solid fa-cart-shopping"></i></button>
     </header>
   </template>
   
@@ -9,7 +11,10 @@
   import { computed } from 'vue';
   import { useAuthStore } from '@/stores/authstore'; // Asegúrate de que la ruta sea correcta
   import { useRouter } from 'vue-router';
-  
+  import '@fortawesome/fontawesome-free/css/all.css';
+  import '@fortawesome/fontawesome-free/js/all.js';
+
+
   const authStore = useAuthStore();
   const router = useRouter();
   
@@ -20,6 +25,12 @@
     authStore.logout(); // Llama a la acción de logout
     router.push('/login'); // Redirige a la página de login
   };
+
+  const goToCart = () =>{
+    router.push('/cart')
+  }
+
+  
   </script>
   
   <style scoped>
@@ -55,6 +66,25 @@
     border-radius: 5px;
   }
   
+  #cart-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 60px;  /* Aumentado para permitir el agrandamiento del ícono */
+  width: 60px;   /* Aumentado para permitir el agrandamiento del ícono */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#cart-button i {
+  font-size: 35px !important;  /* Tamaño del ícono normal */
+  background-color: red;
+}
+
+#cart-button:hover i {
+  font-size: 45px !important;  /* Tamaño del ícono al hacer hover */
+}
   .logout-button:hover {
     background-color: #c82333; /* Color rojo más oscuro para el hover */
   }
