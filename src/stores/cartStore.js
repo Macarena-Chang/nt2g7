@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 
 export const useCartStore = defineStore('cart', () => {
@@ -23,6 +24,8 @@ export const useCartStore = defineStore('cart', () => {
 
   const clearCart = () => {
     cartItems.value = [];
+    const router = useRouter()
+    router.push("/cart")
   };
 
   const cartTotal = () => {

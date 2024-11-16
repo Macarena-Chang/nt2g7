@@ -58,51 +58,72 @@ const addToCart = (event) => {
 </template>
 
 <style scoped>
-main {
-  position: relative;
-}
-
-.user-info {
+.main {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
+  align-items: center; /* Centra horizontalmente los elementos dentro de `main` */
 }
 
 .events-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-top: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Cuadrícula responsive */
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  max-width: 1200px;
+  width: 100%;
 }
 
 .event-card {
-  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column; /* Asegura que los elementos se distribuyan verticalmente */
+  justify-content: space-between; /* Mantiene espacio entre contenido y botón */
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
   padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: box-shadow 0.3s;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+  height: 300px; /* Altura fija para todas las tarjetas */
 }
 
 .event-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
 }
 
 .event-image {
   width: 100%;
-  height: auto;
-  border-radius: 5px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .event-title {
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1.2em;
   margin: 10px 0;
+  color: #fff;
 }
 
 .event-location,
 .event-price {
-  font-size: 1rem;
-  color: #555;
+  font-size: 0.9em;
+  color: #ddd;
+}
+
+button {
+  margin-top: auto; /* Empuja el botón hacia la parte inferior */
+  padding: 10px 15px;
+  background-color: rgba(0, 123, 255, 0.7);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgba(0, 123, 255, 0.9);
 }
 </style>

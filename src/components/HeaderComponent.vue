@@ -1,6 +1,6 @@
 <template>
     <header class="header-logo">
-      <span class="logo-title">TU-EVENTO</span>
+      <router-link to="/" class="logo-title">TU-EVENTO</router-link>
       <button v-if="isAuthenticated" @click="handleLogout" class="logout-button">Logout</button>
       
       <button @click="goToCart()" id="cart-button"><i class="fa-solid fa-cart-shopping"></i></button>
@@ -54,6 +54,7 @@
   
   .logo-title {
     margin: 0; /* Elimina márgenes para centrar correctamente */
+    color: #dc3545
   }
   
   /* Estilos del botón de logout */
@@ -78,8 +79,8 @@
 }
 
 #cart-button i {
-  font-size: 35px !important;  /* Tamaño del ícono normal */
-  background-color: red;
+  font-size: 40px !important;  /* Tamaño del ícono normal */
+  
 }
 
 #cart-button:hover i {
