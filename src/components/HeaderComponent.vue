@@ -1,6 +1,6 @@
 <template>
   <header class="header-logo">
-    <router-link to="/" class="logo-title">TICKET´S</router-link>
+    <router-link to="/home" class="logo-title">TICKET´S</router-link>
     <div class="button-container">
       <button v-if="isAuthenticated" @click="handleLogout" class="logout-button">Logout</button>
       <button @click="goToCart()" id="cart-button">

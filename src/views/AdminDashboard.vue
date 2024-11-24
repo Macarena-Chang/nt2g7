@@ -10,20 +10,19 @@
   </template>
   <script setup>
   import { ref, onMounted } from 'vue';
-  import { useAuthStore } from '@/stores/authstore';
   import axios from 'axios';
+import { useRoute } from 'vue-router';
 
-
+  const route = useRoute
   const totalEventosVendidos = ref(0);
   const totalDineroRecaudado = ref(0);
   
-  // Simula una llamada al backend
+
   const fetchAdminData = async () => {
-    // Reemplaza con una llamada real a tu API
     const response = await axios.get(`https://67201e1be7a5792f05308aee.mockapi.io/events/events/${route.params.id}`);
     const data = await response.json();
-    totalEventosVendidos.value = data.totalEventos;
-    totalDineroRecaudado.value = data.totalDinero;
+    totalEventosVendidos.value = data.stockCant;
+    totalDineroRecaudado.value = data.vendidosCantidad * data.price;
   };
   
   onMounted(() => {

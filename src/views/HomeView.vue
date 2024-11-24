@@ -56,9 +56,9 @@ const addToCart = (event) => {
     
   </main>
 
-  <button class="btn-dashboard">
-    <router-link to="/admin/dashboard">Ir al Dashboard</router-link>
-  </button>
+  <button v-if="authStore.currentUser?.isAdmin" class="btn-dashboard">
+      <router-link to="/admin/dashboard">Ir al Dashboard</router-link>
+    </button>
 </template>
 
 <style scoped>
