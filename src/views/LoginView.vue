@@ -1,7 +1,7 @@
 <template>
   <!-- Encabezado con logo "TU-EVENTO" -->
   <header class="header-logo">
-    TU-EVENTO
+    TICKET´S
   </header>
 
   <div class="form-switch-container">

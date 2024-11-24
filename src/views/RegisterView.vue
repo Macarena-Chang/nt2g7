@@ -1,6 +1,6 @@
 <template>
     <header class="header-logo">
-      TU-EVENTO
+      TICKETS´S
     </header>
   
     <div class="form-container">
