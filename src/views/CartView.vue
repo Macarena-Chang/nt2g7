@@ -10,6 +10,8 @@
       </div>
       <h2>Total: {{ cartTotal() }}</h2>
       <button @click="handleClearCart">Vaciar Carrito</button>
+      <button @click="hacerCompra">Realizar compra</button>
+
     </div>
     <div v-else>
       <p>El carrito está vacío.</p>
@@ -28,6 +30,12 @@ const cartStore = useCartStore();
 const cartItems = cartStore.cartItems;
 const cartTotal = cartStore.cartTotal;
 const removeFromCart = cartStore.removeFromCart;
+
+const hacerCompra = () =>{
+  alert("Compra realizada")
+  cartStore.clearCart();
+  router.push('/cart')
+}
 
 const handleClearCart = () => {
   cartStore.clearCart(); // Vacía el carrito
