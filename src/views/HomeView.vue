@@ -53,7 +53,7 @@ const addToCart = (event) => {
         <button @click="addToCart(event)">Añadir al carrito</button>
       </div>
     </div>
-    <button @click="router.push('/cart')">Ver Carrito</button>
+    
   </main>
 </template>
 

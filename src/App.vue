@@ -13,7 +13,8 @@ import Header from './components/HeaderComponent.vue';
 const authStore = useAuthStore();
 
 onMounted(() => {
-  authStore.initializeAuth(); // Llama a initializeAuth al montar el componente
+  authStore.initializeAuth();
+  
 });
 </script>
 

@@ -53,8 +53,10 @@ const router = createRouter({
     {
       path: '/cart',
       name: 'cart',
-      component: CartView
+      component: CartView,
+      meta: { requiresAuth: true } // Solo usuarios autenticados pueden acceder
     }
+    
   ]
 });
 
