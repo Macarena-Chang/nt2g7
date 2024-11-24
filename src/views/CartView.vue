@@ -31,12 +31,12 @@ const removeFromCart = cartStore.removeFromCart;
 
 const hacerCompra = async () => {
   await cartStore.checkout(); // Call the checkout action
-  router.push('/cart'); // Redirect to the cart page
+  router.go(0); // Redirect to the cart page
 };
 
 const handleClearCart = () => {
   cartStore.clearCart(); // Vacía el carrito
-  router.replace('/cart'); // Redirige a la página del carrito vacío
+  router.go(0); // Redirige a la página del carrito vacío
 };
 </script>
 
