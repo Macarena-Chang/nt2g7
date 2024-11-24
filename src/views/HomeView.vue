@@ -55,6 +55,10 @@ const addToCart = (event) => {
     </div>
     
   </main>
+
+  <button class="btn-dashboard">
+    <router-link to="/admin/dashboard">Ir al Dashboard</router-link>
+  </button>
 </template>
 
 <style scoped>

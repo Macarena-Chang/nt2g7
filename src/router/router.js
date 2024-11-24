@@ -5,6 +5,7 @@ import HomeView from '../views/HomeView.vue';
 import EventsView from '../views/EventsView.vue';
 import EventDetailView from '../views/EventDetailView.vue';
 
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -55,7 +56,14 @@ const router = createRouter({
       name: 'cart',
       component: CartView,
       meta: { requiresAuth: true } // Solo usuarios autenticados pueden acceder
+    },
+    {
+      path: '/admin/dashboard',
+      name: 'AdminDashboard',
+      component: () => import('../views/AdminDashboard.vue'),
+      meta: { requiresAuth: true, adminOnly: true }
     }
+    
     
   ]
 });
@@ -64,17 +72,16 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore();
   const isAuthenticated = authStore.isAuthenticated;
+  const currentUser = authStore.currentUser;
 
-  // Redirigir a /home si el usuario ya está autenticado y intenta acceder a /login
-  if (to.path === '/login' && isAuthenticated) {
-    next('/home'); // Redirigir a /home
-  } else if (to.meta.requiresAuth && !authStore.currentUser) {
-    next('/login'); // Redirigir a /login si no está autenticado
-  } else if (to.meta.adminOnly && authStore.currentUser?.role !== 'admin') {
-    next('/unauthorized'); // Redirigir a la página no autorizada
+  if (to.meta.requiresAuth && !isAuthenticated) {
+    next('/login');
+  } else if (to.meta.adminOnly && currentUser?.role !== 'admin') {
+    next('/unauthorized');
   } else {
-    next(); // Continuar a la ruta deseada
+    next();
   }
 });
+
 
 export default router;
