@@ -6,13 +6,19 @@
       <p>Total de eventos vendidos: {{ totalEventosVendidos }}</p>
       <p>Total recaudado: {{ totalDineroRecaudadoFormatted }}</p>
     </div>
+    <!-- Include the SalesChart component -->
+    <div style="max-width: 800px; margin: auto;">
+      <SalesChart :events-data="events" />
+    </div>
   </div>
 </template>
 
 <script setup>
 import axios from 'axios';
 import { computed, onMounted, ref } from 'vue';
+import SalesChart from '../components/SalesChart.vue'; // Import the SalesChart component
 
+const events = ref([]);
 const totalEventosVendidos = ref(0);
 const totalDineroRecaudado = ref(0);
 
@@ -20,15 +26,15 @@ const fetchAdminData = async () => {
   try {
     // Fetch all events from the API
     const response = await axios.get('https://67201e1be7a5792f05308aee.mockapi.io/events/events');
-    const events = response.data;
+    events.value = response.data;
 
     // Calculate the total number of events sold
-    totalEventosVendidos.value = events.reduce((total, event) => {
+    totalEventosVendidos.value = events.value.reduce((total, event) => {
       return total + Number(event.vendidosCantidad);
     }, 0);
 
     // Calculate the total money earned
-    totalDineroRecaudado.value = events.reduce((total, event) => {
+    totalDineroRecaudado.value = events.value.reduce((total, event) => {
       const vendidosCantidad = Number(event.vendidosCantidad) || 0;
       const price = Number(event.price) || 0;
       return total + vendidosCantidad * price;
@@ -52,5 +58,5 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* You can add styles specific to the admin dashboard here */
+/* Add styles for your admin dashboard here */
 </style>
