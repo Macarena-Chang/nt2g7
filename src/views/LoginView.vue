@@ -27,8 +27,8 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
 import { useAuthStore } from '@/stores/authstore';
+import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const authStore = useAuthStore();
@@ -115,7 +115,7 @@ const cambiarForm = () => {
 .login-input {
   margin-bottom: 1rem;
   padding: 0.75rem;
-  border: 1px solid #ddd;
+  border: 1px solid #464646;
   border-radius: 5px;
   font-size: 1rem;
 }

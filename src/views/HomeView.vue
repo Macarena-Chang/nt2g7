@@ -1,11 +1,11 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useAuthStore } from '../stores/authstore';
-import { useRouter } from 'vue-router';
-import { useCartStore } from '../stores/cartStore';
-import axios from 'axios';
 import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '../stores/authstore';
+import { useCartStore } from '../stores/cartStore';
 
 
 
@@ -114,7 +114,7 @@ const addToCart = (event) => {
 .event-location,
 .event-price {
   font-size: 0.9em;
-  color: #ddd;
+  color: #464646;
 }
 
 button {

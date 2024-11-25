@@ -19,9 +19,9 @@
   </template>
   
   <script setup>
-  import { ref } from 'vue';
   import { useAuthStore } from '@/stores/authstore';
-  import { useRouter } from 'vue-router';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
   
   const authStore = useAuthStore();
   const router = useRouter();
@@ -88,7 +88,7 @@
   .register-input {
     margin-bottom: 1rem;
     padding: 0.75rem;
-    border: 1px solid #ddd;
+    border: 1px solid #464646;
     border-radius: 5px;
     font-size: 1rem;
   }

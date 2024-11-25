@@ -42,7 +42,7 @@ const handleClearCart = () => {
 
 <style scoped>
 .cart-item {
-  border: 1px solid #ddd;
+  border: 1px solid #464646;
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
